@@ -1,0 +1,37 @@
+# FizzBuzz 3 (using a ladder of filters, a latch and a supplier of the basic logic block,)
+
+# Required Channels
+! out
+
+# Channels we define
+= c1 c2 c3 latch block gate
+
+# First node generates sequence of ints
+# Note the latch on input :X,
+# we only release the next value when the previous one has passed the final gate-keeper
+# this stops the results that travelled on different pathways, arriving out of order
+{:X latch} {:-> c1 :+> out}
+0 :/// :DUP :-> :X :DROP 1 :+
+
+# Block Supplier (provides code that can be reused by several filter stages, on the block channel)
+{} {:-> block}
+[[[:$$] :SWAP :CONS :+> ] [:->] [:$$ :% 0 :=] :COND] :->
+
+# Now we begin a ladder of similar filters.
+# All using the same code-block from the block supplier, but parameterized in the initialization phase
+
+# FizzBuzz (tests if mod 15)
+{:X c1 :Y block} {:-> c2 :+> gate}
+15 "FizzBuzz 3" :Y :TPL :/// :DUP :X :TUCK :SWAP :UNQ
+
+# Buzz (tests if mod 5)
+{:X c2 :Y block} {:-> c3  :+> gate}
+5 "Buzz 3" :Y :TPL :/// :DUP :X :TUCK :SWAP :UNQ
+
+# Fizz (tests if mod 3)
+{:X c3 :Y block} {:-> gate :+> gate }
+3 "Fizz 3" :Y :TPL  :/// :DUP :X :TUCK :SWAP :UNQ
+
+# Gatekeeper  ... only open the latch when we've passed this result out
+{:X gate} {:-> out :+> latch}
+:X :-> 0 :+>

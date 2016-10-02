@@ -1,0 +1,13 @@
+# FizzBuzz
+# Requred Channels
+! out
+# Channels we create here
+= c1
+
+# First node generates sequence of ints
+{} {:-> c1}
+0 :/// :DUP :-> 1 :+
+
+# Second node processes them.
+{:X c1} {:-> out}
+:X :DUP  ["FizzBuzz" :-> :DROP] [:DUP ["Buzz" :-> :DROP] [:DUP ["Fizz" :-> :DROP] [:->] [3 :% 0 :=] :COND] [5 :% 0 :=] :COND] [15 :% 0 := ] :COND

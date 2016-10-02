@@ -1,0 +1,10 @@
+# Required channels
+! out
+# Channels we create here
+= c1
+# first node, produces stream of integers
+{} {:-> c1}
+0 :/// :DUP :-> 1 :+
+# second node, multiplies each pair
+{:X c1 } {:-> out}
+:X :X :* :DUP :*  :->

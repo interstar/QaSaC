@@ -1,0 +1,6 @@
+# These are the channels we require being given by the calling program.
+! out
+
+# one node, produces stream of integers
+{} {:-> out}
+0 :/// :DUP :-> 1 :+

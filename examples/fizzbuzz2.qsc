@@ -1,0 +1,26 @@
+# FizzBuzz 2 (using more nodes to make the algorithm easier to read)
+# Required Channels
+! out
+
+# Channels we create here
+= c1 c2 c3
+
+# First node generates sequence of ints
+{} {:-> c1 :+> out}
+0 :/// :DUP :-> 1 :+
+
+# Now we begin a ladder of similar filters.
+# If the number matches, we send to out via :+>
+# If it doesn't, we pass it on to the next filter via :->
+
+# FizzBuzz (tests if mod 15)
+{:X c1} {:-> c2 :+> out}
+:X :DUP ["FizzBuzz 2" :+> :DROP] [:->] [15 :% 0 :=] :COND
+
+# Buzz (tests if mod 5)
+{:X c2} {:-> c3  :+> out}
+:X :DUP ["Buzz 2" :+> :DROP] [:->] [5 :% 0 :=] :COND
+
+# Fizz (tests if mod 3)
+{:X c3} {:-> out}
+:X :DUP ["Fizz 2" :-> :DROP] [:->] [3 :% 0 :=] :COND

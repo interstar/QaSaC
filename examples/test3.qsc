@@ -1,0 +1,13 @@
+# These are the channels we require from the calling program.
+! out
+
+# And these are the ones we declare here
+= c1
+
+# one node, produces stream of integers
+{} {:-> c1}
+0 :/// :DUP :-> 1 :+
+
+# second node, multiplies those integers by 3
+{:X c1} {:-> out}
+:X 3 :* :->
