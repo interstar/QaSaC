@@ -10,7 +10,11 @@ The interpreter is currently written in Clojure because Clojure is a wonderfully
 
 ## Quickstart 
 
-
+```
+git clone https://github.com/interstar/QaSaC.git qasac
+cd qasac
+lein run examples/test1.qsc 30
+```
 
 ## Overview
 
