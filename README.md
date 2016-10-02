@@ -94,7 +94,7 @@ The line that starts with the `=` declares the internal channels. Eventually we'
 
 Having declared both external and internal channels, the rest of our program is now a sequence of node definitions.
 
-Each node definition has two lines, the first declares connections between the local channel names within the node, and our channels as declared earlier. The second is the sequence of data and operators that define the node's behaviour. 
+Each node definition has two lines, the first specifies the mapping between the local channel names within the node, and our channels as declared earlier. The second is the sequence of data and operators that define the node's behaviour. 
 
 In our above example, the first node has its connections defined like so.
 
