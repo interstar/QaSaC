@@ -326,91 +326,13 @@ Secondly, we can receive a block from another node, BEFORE we've got any data fo
 
 
 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Installation
-
-Download from http://example.com/FIXME.
-
-## Usage
-
-The basic core program is designed to run an external QaSaC script and print n items from an output channel called "out".
-
-You run a script like this :
-
-    lein run examples/test1.qsc 20
-    
-test1.qsc is the script, 20 is the number to take from the output channel before terminating.
-
-    
-    
-
-## Real Examples
-
-Have a look at some examples. 
-
-Here is test1.qsc 
-
-    # These are the channels we require being given by the calling program.
-    ! out
-    
-    # one node, produces stream of integers
-    { } {:-> out}
-    0 :/// :DUP :-> 1 :+
-
-
-On the first line, starting with !, this program declares that it needs to be given an output channel with the name "out", 
-by the interpreter. (Which is fine, this is what the default interpreter does.)
-
-Lines starting with # are comments, and ignored.
-
-The program consists  of a single node definition over two lines. 
-
-The first line explicitly wires up the channels to the node. Inside the first curly-braces we have a hash of input channels the node is connected to. Here they are empty because this node requires no inputs. The second curly-braces has a hash of output channels. Here we see the pair :-> out which tells QaSaC that this node's default output (the :->) will go to the channel called "out". 
-
-The second line defines the program running in the node itself. It's the same as described above.
-
-Running this program with `lein run examples/test1.qsc 20`  will produce a sequence of the first 20 integers.
-
- 
-
-
-
 ### Bugs
 
-...
+To be discovered ...
 
-### Any Other Sections
-### That You Think
-### Might be Useful
 
 ## License
 
 Copyright © 2016 Phil Jones
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
