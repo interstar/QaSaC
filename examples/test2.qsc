@@ -5,6 +5,6 @@
 # first node, produces stream of integers
 {} {:-> c1}
 0 :/// :DUP :-> 1 :+
-# second node, multiplies each pair
+# second node, multiplies each pair and squares the result
 {:X c1 } {:-> out}
 :X :X :* :DUP :*  :->
